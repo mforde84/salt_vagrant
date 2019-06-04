@@ -41,7 +41,7 @@ else # if up (default)
 
  # set key state for minion
  cd "$SALT_ROOT"/master
- vagrant ssh -c 'yes | salt-key --accept=minion1' # ACCEPT ALL: salt-key -A
+ vagrant ssh -c 'yes | sudo salt-key --accept=minion1' # ACCEPT ALL: salt-key -A
 
 fi
 
