@@ -16,10 +16,10 @@ read DECISION
 if [[ "$DECISION" == "y" ]];  then # if update
 
  # replace paths
- sed -i 's~^base_path.*~base_path='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
+ sed -i 's~^base_path.*~base_path='"$SALT_ROOT"'~g' "$SALT_ROOT"/salt.geany
  NEWLOC=`echo "$SALT_ROOT" | sed 's/\//%2F/g'`
- sed -i 's~%2F.*vagrant~'"$NEWLOC"'~g' $SALT_ROOT/salt.geany
- sed -i 's~^last_dir.*~last_dir='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
+ sed -i 's~%2F.*vagrant~'"$NEWLOC"'~g' "$SALT_ROOT"/salt.geany
+ sed -i 's~^last_dir.*~last_dir='"$SALT_ROOT"'~g' "$SALT_ROOT"/salt.geany
 
 fi # else do nothing
 
