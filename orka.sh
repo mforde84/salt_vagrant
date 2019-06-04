@@ -9,7 +9,21 @@ updown() { ## updown < up / down > < hostname >
  vagrant $1
 }
 
-# interactive, up or down vms?
+# query update to geany paths?
+echo "update geany paths (y/n, default:n)?: "
+read DECISION
+ 
+if [[ "$DECISION" == "y" ]];  then # if update
+ 
+ # replace paths
+ sed -i 's~^base_path.*~base_path='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
+ NEWLOC=`echo $SALT_ROOT | sed 's/\//%2F/g'`
+ sed -i 's~%2F.*vagrant~'"$NEWLOC"'~g' $SALT_ROOT/salt.geany
+ sed -i 's~^last_dir.*~last_dir='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
+  
+fi # else do nothing
+
+# query up or down vms?
 echo "up or down (u/d, default:u)?: "
 read DECISION
 
@@ -18,20 +32,6 @@ if [[ "$DECISION" == "d" ]];  then #if down
  # break down everything
  updown "destroy -f" master
  updown "destroy -f" minion1
-
- # query update to geany paths
- echo "update geany paths (y/n, default:n)?: "
- read DECISION
- 
- if [[ "$DECISION" == "y" ]];  then # if update
- 
-  # replace paths
-  sed -i 's~^base_path.*~base_path='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
-  NEWLOC=`echo $SALT_ROOT | sed 's/\//%2F/g'`
-  sed -i 's~%2F.*vagrant~'"$NEWLOC"'~g' $SALT_ROOT/salt.geany
-  sed -i 's~^last_dir.*~last_dir='"$SALT_ROOT"'~g' $SALT_ROOT/salt.geany
-  
- fi # else do nothing
  
 else # if up (default)
 
