@@ -30,7 +30,7 @@ read DECISION
 if [[ "$DECISION" == "d" ]];  then #if down
 
  # break down everything
- updown "destroy -f" master &
+ updown "destroy -f" master
  updown "destroy -f" minion1
 
 else # if up (default)
@@ -41,6 +41,7 @@ else # if up (default)
 
  # set key state for minion
  cd "$SALT_ROOT"/master
+ 
  vagrant ssh -c 'yes | sudo salt-key --accept=minion1' # ACCEPT ALL: salt-key -A
 
 fi
