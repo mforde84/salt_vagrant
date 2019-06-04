@@ -1,0 +1,61 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+ 
+	config.vm.box = "centos/7"
+	config.vm.hostname = "master"
+	config.vm.network "private_network", ip: "192.168.56.101"
+	config.vm.synced_folder "../src", "/src",
+		mount_options: ["dmode=755,fmode=644"]
+
+	config.vm.provision "shell", inline: <<-SHELL
+
+		#u pdate and install build essentials  
+		yum install nano git epel-release -y	
+		yum groupinstall 'Development Tools' -y
+		
+		# generate rsa keys
+		ssh-keygen -t rsa -f /src/sshkey -q -N ""
+		
+		# setup rsa keys
+		mkdir /root/.ssh
+		chmod 700 /root/.ssh
+		cat /src/sshkey.pub >> /root/.ssh/authorized_keys
+		chmod 644 /root/.ssh/authorized_keys
+		cp /src/sshkey /root/.ssh/id_rsa
+		chmod 0600 /root/.ssh/id_rsa
+		
+		# setup sshd config
+		cat /src/ssh_config | grep -v "^#" > /etc/ssh/ssh_config
+		cat /src/sshd_config | grep -v "^#" > /etc/ssh/sshd_config
+		chmod 644 /etc/ssh/sshd_config /etc/ssh/ssh_config
+		systemctl restart sshd
+
+		# set up hosts
+		echo -ne "192.168.56.201\tminion1\n" | tee -a /etc/hosts
+
+		#helper stuff for accounts to perform admin stuff
+		echo -ne 'alias s="sudo su -"\nalias ll="ls -alF"\n' | tee -a /home/vagrant/.bashrc 
+		echo -ne 'alias s="alias ll="ls -alF"\n' | tee -a /root/.bashrc
+		sed -i '/%wheel.*/d' /etc/sudoers
+		echo "%wheel  ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
+		usermod -a -G wheel vagrant
+
+		# min permissive firewalld
+		systemctl start firewalld.service
+		systemctl enable firewalld.service
+		firewall-cmd --permanent --zone=public --add-port=4505-4506/tcp
+		firewall-cmd --reload
+
+		# salt master install
+		yum install salt-master -y
+
+		# salt master configuration
+		sed -i 's~^#interface: 0.0.0.0~interface: 192.168.56.101~g;s~^#hash_type: md5~hash_type: sha256~g' /etc/salt/master
+		systemctl start salt-master.service
+		systemctl enable salt-master.service
+
+SHELL
+
+end
