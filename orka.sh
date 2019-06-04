@@ -30,7 +30,7 @@ read DECISION
 if [[ "$DECISION" == "d" ]];  then #if down
 
  # break down everything
- updown "destroy -f" master
+ updown "destroy -f" master &
  updown "destroy -f" minion1
 
 else # if up (default)
