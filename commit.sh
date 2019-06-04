@@ -16,8 +16,8 @@ fi
 #update git
 eval `ssh-agent -s` > "$PWD"/access/sagent
 export ID=`cat "$PWD"/access/sagent | sed 's/Agent pid //g'`
-ssh-add "$PWD"/access/slurm
-git config --global user.name "fordemx"
+ssh-add "$PWD"/access/salt.rsa
+git config --global user.name mforde84
 git config --global user.email mforde84@gmail.com
 git config --global core.excludesFile .gitignore
 git remote set-url origin https://github.com/mforde84/salt_vagrant.git 
