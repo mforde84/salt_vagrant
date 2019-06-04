@@ -14,9 +14,9 @@ if [ -z "$BRANCH" ]; then
 fi
 
 #update git
-eval $(ssh-agent -s) > $PWD/access/sagent
-export ID=$(cat $PWD/access/sagent | sed 's/Agent pid //g')
-ssh-add $PWD/access/slurm
+eval `ssh-agent -s` > "$PWD"/access/sagent
+export ID=`cat "$PWD"/access/sagent | sed 's/Agent pid //g'`
+ssh-add "$PWD"/access/slurm
 git config --global user.name "fordemx"
 git config --global user.email mforde84@gmail.com
 git config --global core.excludesFile .gitignore
