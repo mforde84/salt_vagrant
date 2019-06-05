@@ -27,7 +27,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=3
+current_page=19
 FILE_NAME_0=505;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fcommit.sh;0;4
 FILE_NAME_1=602;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Forka.sh;0;4
 FILE_NAME_2=0;Markdown;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2FREADME.md;0;4
@@ -47,6 +47,7 @@ FILE_NAME_15=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2F
 FILE_NAME_16=0;Ruby;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fsstates%2Fsalt%2Fssh%2Finit.sls;0;4
 FILE_NAME_17=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fsstates%2Fsalt%2Fssh%2Ffiles%2Fsshd_config;0;4
 FILE_NAME_18=0;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fsstates%2Fsalt%2Fusers%2Ffiles%2F.zshrc;0;4
+FILE_NAME_19=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fsrc%2Fsshkey;0;4
 
 [VTE]
 last_dir=/home/b
