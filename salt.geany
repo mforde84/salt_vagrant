@@ -19,7 +19,7 @@ indent_mode=2
 
 [project]
 name=salt.geany
-base_path=/home/b/Desktop/test space dir
+base_path=/home/b/Desktop/salt_vagrant
 description=
 
 [long line marker]
@@ -50,4 +50,4 @@ FILE_NAME_18=0;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2F
 FILE_NAME_19=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fb%2FDesktop%2Ftest%20space%20dir%2Fsrc%2Fsshkey;0;4
 
 [VTE]
-last_dir=/home/b
+last_dir=/home/b/Desktop/salt_vagrant

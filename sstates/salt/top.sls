@@ -1,7 +1,7 @@
 base:
-	"*":
-		- requirements
-		- users
-		- ssh
-		- logging
-		- ruby
+  "*":
+    - requirements
+    - users
+    - ssh
+    - logging
+    - ruby
