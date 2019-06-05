@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "../src", "/src",
 		mount_options: ["dmode=755,fmode=644"]
 	config.vm.synced_folder "../sstates", "/sstates",
-                mount_options: ["dmode=755,fmode=644"]
+		mount_options: ["dmode=755,fmode=644"]
 	config.vm.provision "shell", inline: <<-SHELL
 
 		#u pdate and install build essentials  
