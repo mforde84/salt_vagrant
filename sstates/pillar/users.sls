@@ -1,6 +1,6 @@
 users:
   mforde:
-    fullename: Martin
+    fullname: Martin
     uid: 1010
     shell: /bin/zsh
     password: 123456
